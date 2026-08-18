@@ -100,20 +100,7 @@ function Navigation() {
             className="flex items-center gap-3 group"
             onClick={handleNavClick}
           >
-            <div className="relative w-9 h-9 flex items-center justify-center">
-              <div
-                className={`absolute inset-0 rounded-full border-2 transition-colors duration-500 ${
-                  scrolled ? "border-gold" : "border-gold-300"
-                }`}
-              />
-              <span
-                className={`font-serif font-bold text-sm transition-colors duration-500 ${
-                  scrolled ? "text-navy" : "text-white"
-                }`}
-              >
-                N6
-              </span>
-            </div>
+            <LogoNav scrolled={scrolled} />
             <div className="flex flex-col">
               <span
                 className={`text-[13px] font-semibold tracking-wide transition-colors duration-500 ${
@@ -288,58 +275,30 @@ function Hero() {
           </div>
 
           <div
-            className="lg:col-span-2 animate-fade-up"
+            className="lg:col-span-2 animate-fade-up flex flex-col items-center"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-sm p-8 lg:p-10 space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-sm bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <MapPinIcon className="text-gold" />
-                </div>
-                <div>
-                  <p className="text-cream text-sm font-semibold mb-1">
-                    Localisation
-                  </p>
-                  <p className="text-cream-200/60 text-sm leading-relaxed">
-                    71 C route d'Auxerre
-                    <br />
-                    89380 Appoigny
-                  </p>
-                </div>
+            {/* Logo medallion */}
+            <div className="mb-8 drop-shadow-[0_0_40px_rgba(197,165,90,0.15)]">
+              <LogoMedallion size={220} />
+            </div>
+
+            {/* Key info strip */}
+            <div className="w-full grid grid-cols-3 gap-px bg-white/10 rounded-sm overflow-hidden">
+              <div className="bg-white/[0.06] backdrop-blur-sm px-4 py-5 text-center">
+                <MapPinIcon className="text-gold mx-auto mb-2" />
+                <p className="text-cream text-[11px] font-semibold uppercase tracking-wide mb-1">Appoigny</p>
+                <p className="text-cream-200/50 text-[10px]">89380, Yonne</p>
               </div>
-
-              <div className="h-px bg-white/10" />
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-sm bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <UsersIcon className="text-gold" />
-                </div>
-                <div>
-                  <p className="text-cream text-sm font-semibold mb-1">
-                    Capacite
-                  </p>
-                  <p className="text-cream-200/60 text-sm">
-                    Jusqu'a 120 personnes assises
-                  </p>
-                </div>
+              <div className="bg-white/[0.06] backdrop-blur-sm px-4 py-5 text-center">
+                <UsersIcon className="text-gold mx-auto mb-2" />
+                <p className="text-cream text-[11px] font-semibold uppercase tracking-wide mb-1">120 places</p>
+                <p className="text-cream-200/50 text-[10px]">Assises</p>
               </div>
-
-              <div className="h-px bg-white/10" />
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-sm bg-gold/10 flex items-center justify-center flex-shrink-0">
-                  <CalendarIcon className="text-gold" />
-                </div>
-                <div>
-                  <p className="text-cream text-sm font-semibold mb-1">
-                    Evenements
-                  </p>
-                  <p className="text-cream-200/60 text-sm leading-relaxed">
-                    Mariages, anniversaires, baptemes,
-                    <br />
-                    cocktails, seminaires, receptions
-                  </p>
-                </div>
+              <div className="bg-white/[0.06] backdrop-blur-sm px-4 py-5 text-center">
+                <CalendarIcon className="text-gold mx-auto mb-2" />
+                <p className="text-cream text-[11px] font-semibold uppercase tracking-wide mb-1">Prive & pro</p>
+                <p className="text-cream-200/50 text-[10px]">Sur reservation</p>
               </div>
             </div>
           </div>
@@ -786,7 +745,10 @@ function ContactSection() {
       </div>
 
       <div className="relative max-w-3xl mx-auto px-6 lg:px-12 text-center">
-        <div className="animate-on-scroll">
+        <div className="animate-on-scroll flex flex-col items-center">
+          <div className="mb-6 opacity-30">
+            <LogoMedallion size={64} />
+          </div>
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-12 h-px bg-gold/40" />
             <span className="text-gold text-[11px] font-semibold tracking-[0.25em] uppercase">
@@ -837,11 +799,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full border border-gold/30 flex items-center justify-center">
-              <span className="font-serif text-[10px] font-bold text-cream">
-                N6
-              </span>
-            </div>
+            <LogoMedallion size={32} />
             <span className="text-cream-200/40 text-xs">
               &copy; 2026 La Salle RN6 &mdash; Appoigny, Yonne.
             </span>
@@ -1044,6 +1002,107 @@ function ExternalLinkIcon() {
       <path d="M15 3h6v6" />
       <path d="M10 14 21 3" />
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  );
+}
+
+function LogoMedallion({ size = 200, className = "" }: { size?: number; className?: string }) {
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="goldRing" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#C5A55A" />
+          <stop offset="35%" stopColor="#E8D5A0" />
+          <stop offset="65%" stopColor="#D4B96A" />
+          <stop offset="100%" stopColor="#C5A55A" />
+        </linearGradient>
+        <linearGradient id="goldRingInner" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#D4B96A" />
+          <stop offset="50%" stopColor="#F0E4BE" />
+          <stop offset="100%" stopColor="#C5A55A" />
+        </linearGradient>
+        <path id="topTextArc" d="M 35,100 A 65,65 0 0,1 165,100" />
+        <path id="bottomTextArc" d="M 48,112 A 56,56 0 0,0 152,112" />
+      </defs>
+
+      {/* Outer gold ring */}
+      <circle cx="100" cy="100" r="94" fill="none" stroke="url(#goldRing)" strokeWidth="7" />
+      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#goldRingInner)" strokeWidth="2" />
+
+      {/* Inner cream fill */}
+      <circle cx="100" cy="100" r="85" fill="#FAF6F0" />
+
+      {/* Top curved text */}
+      <text fill="#1B2A4A" fontSize="9.5" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" letterSpacing="1.8">
+        <textPath href="#topTextArc" startOffset="50%" textAnchor="middle">
+          SALLE DES FETES ET SEMINAIRES
+        </textPath>
+      </text>
+
+      {/* Decorative dots on sides */}
+      <circle cx="22" cy="100" r="2.5" fill="#C5A55A" />
+      <circle cx="178" cy="100" r="2.5" fill="#C5A55A" />
+
+      {/* Borne kilometrique (road marker) */}
+      <g transform="translate(100, 56)">
+        {/* Marker body */}
+        <rect x="-14" y="-24" width="28" height="44" rx="4" ry="4" fill="#2A3B5C" />
+        {/* Red top band */}
+        <rect x="-14" y="-24" width="28" height="14" rx="4" ry="0" fill="#C41E3A" />
+        <rect x="-14" y="-14" width="28" height="4" fill="#C41E3A" />
+        {/* N6 text */}
+        <text x="0" y="12" textAnchor="middle" fontSize="18" fontWeight="bold" fill="white" fontFamily="'DM Sans', Arial, sans-serif">
+          N6
+        </text>
+      </g>
+
+      {/* LA SALLE text */}
+      <text x="100" y="96" textAnchor="middle" fontSize="21" fontWeight="700" fill="#1B2A4A" fontFamily="'Cormorant Garamond', Georgia, serif" letterSpacing="3">
+        LA SALLE
+      </text>
+
+      {/* RN6 text */}
+      <text x="100" y="115" textAnchor="middle" fontSize="17" fontWeight="700" fill="#1B2A4A" fontFamily="'Cormorant Garamond', Georgia, serif" letterSpacing="4">
+        RN6
+      </text>
+
+      {/* Bottom curved text */}
+      <text fill="#1B2A4A" fontSize="9" fontFamily="'Cormorant Garamond', Georgia, serif" fontWeight="600" letterSpacing="2.5">
+        <textPath href="#bottomTextArc" startOffset="50%" textAnchor="middle">
+          APPOIGNY &middot; YONNE
+        </textPath>
+      </text>
+
+      {/* Bottom decorative dots */}
+      <circle cx="58" cy="140" r="2" fill="#C5A55A" />
+      <circle cx="142" cy="140" r="2" fill="#C5A55A" />
+    </svg>
+  );
+}
+
+function LogoNav({ scrolled }: { scrolled: boolean }) {
+  return (
+    <svg width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="navGoldRing" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={scrolled ? "#C5A55A" : "#E8D5A0"} />
+          <stop offset="50%" stopColor={scrolled ? "#E8D5A0" : "#F5EFE0"} />
+          <stop offset="100%" stopColor={scrolled ? "#C5A55A" : "#D4B96A"} />
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="92" fill="none" stroke="url(#navGoldRing)" strokeWidth="8" />
+      <circle cx="100" cy="100" r="82" fill={scrolled ? "#FAF6F0" : "rgba(255,255,255,0.1)"} />
+      <g transform="translate(100, 85)">
+        <rect x="-16" y="-30" width="32" height="50" rx="5" fill={scrolled ? "#2A3B5C" : "rgba(255,255,255,0.9)"} />
+        <rect x="-16" y="-30" width="32" height="16" rx="5" fill="#C41E3A" />
+        <rect x="-16" y="-18" width="32" height="4" fill="#C41E3A" />
+        <text x="0" y="12" textAnchor="middle" fontSize="22" fontWeight="bold" fill={scrolled ? "white" : "#1B2A4A"} fontFamily="'DM Sans', sans-serif">
+          N6
+        </text>
+      </g>
+      <text x="100" y="130" textAnchor="middle" fontSize="14" fontWeight="700" fill={scrolled ? "#1B2A4A" : "white"} fontFamily="'Cormorant Garamond', serif" letterSpacing="2">
+        RN6
+      </text>
     </svg>
   );
 }
