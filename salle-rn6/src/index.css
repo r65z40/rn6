@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 218 45% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 218 45% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 218 45% 20%;
+    --primary: 218 45% 20%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 40 33% 93%;
+    --secondary-foreground: 218 45% 20%;
+    --muted: 40 20% 93%;
+    --muted-foreground: 218 20% 46%;
+    --accent: 42 47% 56%;
+    --accent-foreground: 218 45% 20%;
+    --destructive: 348 73% 44%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 42 47% 56%;
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream font-sans text-navy;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-on-scroll-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-on-scroll-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #C5A55A 0%, #E8D5A0 50%, #C5A55A 100%);
+  }
+
+  .navy-gradient {
+    background: linear-gradient(180deg, #1B2A4A 0%, #243559 60%, #1B2A4A 100%);
+  }
+}
+
+::selection {
+  background-color: rgba(197, 165, 90, 0.25);
+  color: #1B2A4A;
+}
